@@ -64,7 +64,7 @@ include "koneksi.php";
     </nav>
     <!--  -->
     <!-- Hero Secttion -->
-    <section id="hero" class="isi text-center p-5 bg-danger-subtle">
+    <section id="hero" class="isi text-center p-5 bg-danger">
         <div class="container">
             <div class="d-sm-flex flex-sm-row-reverse align-items-center">
                 <img src="https://wallpaperaccess.com/full/6192238.jpg" alt="default" class="img-fluid" width="600" />
@@ -202,29 +202,30 @@ include "koneksi.php";
     </section>
     <!--  -->
     <!-- Gallery Secttion -->
-    <section id="gallery" class="isi text-center p-5 bg-danger-subtle">
+    <section id="gallery" class="isi text-center p-5 bg-danger">
         <div class="container">
             <h1 class="fw-bold display-4 pb-3">Gallery</h1>
             <div id="carouselExample" class="carousel slide">
+            <?php
+                $sql = "SELECT * FROM gallery";
+                $hasil = $conn->query($sql);
+
+                $active = true; // Flag to set the first item as active
+                ?>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://wallpaperaccess.com/full/6192305.jpg" class="d-block w-100" alt="..." />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://wallpapercave.com/wp/wp8730532.jpg" class="d-block w-100" alt="..." />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://wallpaperaccess.com/full/6192298.jpg" class="d-block w-100" alt="..." />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://i.pinimg.com/originals/71/5c/26/715c26b9824fd92c4fd9c8fe070b149d.jpg"
-                            class="d-block w-100" alt="..." />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://i.pinimg.com/originals/56/0c/ac/560cac504922c2ca81b51ef2dd05e92e.jpg"
-                            class="d-block w-100" alt="..." />
-                    </div>
-                </div>
+                    <?php
+                    while ($row = $hasil->fetch_assoc()) {
+                    ?>
+                        <div class="carousel-item <?= $active ? 'active' : '' ?>">
+                            <img
+                                src="img/<?= $row["gambar"] ?>"
+                                class="d-block w-100"
+                                alt="..." />
+                        </div>
+                    <?php
+                        $active = false;
+                    }
+                    ?>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -343,7 +344,7 @@ include "koneksi.php";
         </div>
     </section>
     
-    <section id="aboutme" class="isi text-center p-5 bg-danger-subtle">
+    <section id="aboutme" class="isi text-center p-5 bg-danger">
         <div class="container">
             <div class="d-lg-flex flex-md-row align-items-center justify-content-evenly">
                 <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9b3e97f2-7e29-44fe-80a9-cd068e923cc7/dduxd55-c9d14592-a876-45ef-b3df-5494462865b8.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzliM2U5N2YyLTdlMjktNDRmZS04MGE5LWNkMDY4ZTkyM2NjN1wvZGR1eGQ1NS1jOWQxNDU5Mi1hODc2LTQ1ZWYtYjNkZi01NDk0NDYyODY1YjgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.J3igBWFcAFPoHl74B-ENo2GrhOpJxvDprPuNtTnz60Y"
@@ -422,7 +423,7 @@ include "koneksi.php";
             }
             const aboutme = document.getElementsByClassName("isi1");
             for (let i = 0; i < collection.length; i++) {
-                collection[i].classList.remove("bg-danger-subtle");
+                collection[i].classList.remove("bg-danger");
                 collection[i].classList.add("bg-dark");
                 collection[i].classList.add("border-body-secondary");
                 collection[i].classList.add("text-light");
@@ -470,7 +471,7 @@ include "koneksi.php";
                 collection[i].classList.remove("bg-dark");
                 collection[i].classList.remove("border-body-secondary");
                 collection[i].classList.remove("text-light");
-                collection[i].classList.add("bg-danger-subtle");
+                collection[i].classList.add("bg-danger");
                 
             }
         };

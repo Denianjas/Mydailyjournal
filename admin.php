@@ -71,11 +71,15 @@ if (!isset($_SESSION['username'])) {
         <li class="nav-item">
         <a class="nav-link" href="admin.php?page=article">Article</a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="admin.php?page=gallery">gallery</a>
+        </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?= $_SESSION['username']?>
                 </a>
                 <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="admin.php?page=profile">Profile <?= $_SESSION['username'] ?> </a></li>
                     <li><a class="dropdown-item" href="logout.php">Logout</a></li> 
                 </ul>
             </li> 
@@ -94,7 +98,7 @@ if (!isset($_SESSION['username'])) {
         ?>
             <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle"><?= ucfirst($_GET['page'])?></h4>
             <?php
-            include($_GET['page'].".php");
+            include($_GET['page'] . ".php");
         }else{
         ?>
             <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle">Dashboard</h4>
